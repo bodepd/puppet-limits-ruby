@@ -1,7 +1,8 @@
 require 'puppet/provider/parsedfile'
 
 #limits_conf = '/etc/security/limits.conf'
-limits_conf = '/tmp/foo.conf'
+limits_conf = '/tmp/limits.conf'
+
 Puppet::Type.type(:limits).provide(
   :parsed,
   :parent => Puppet::Provider::ParsedFile,
@@ -14,7 +15,7 @@ Puppet::Type.type(:limits).provide(
     text_line :blank, :match => /^\s*$/;
 
     record_line :parsed, 
-                :fields => %w{name type item value}, 
+                :fields => %w{domain type item value}, 
                 :joiner => ' ', 
                 :separator => /\s+/
 end
