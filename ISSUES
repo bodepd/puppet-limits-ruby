@@ -1,0 +1,30 @@
+1. namevar has to be name for parsedfile
+This has been fixed (although I am not sure how)
+
+2. parse_title fails when it cant parse the title
+#7625
+
+hash to resource ? it is adding a title?
+
+
+this is really different from how namevar works, the title defaults to overriding our attributes? what about aliases and what-not?
+
+Is there no differentiation between namevar and title for composite namevars?
+
+
+CODE:
+resources { 'limits':
+  purge => true
+}
+#host { 'foo':
+#  ip => '127.0.0.2'
+#}
+limits { 'dan/hard/foo':
+  domain => 'bob',
+  value => '4'
+}
+FILE:
+bob soft items 4
+dan hard foo 4
+
+the dan line should be delete, byt instead, a bob line is added and it stays
